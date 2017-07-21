@@ -1,0 +1,23 @@
+  <div *ngFor="let item of popularMovies">
+    <div >
+      <a href="movieinfo/{{item.id}}">
+        <div>
+          <img class="img-thumbnail" src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
+        </div>
+      </a>
+      <div >
+        <p>
+          <a href="movieinfo/{{item.id}}">
+        <span class="title result">{{ item.title}}</span>
+          </a>
+          <span> {{ item.vote_average }} </span>
+        </p>
+        <p>
+          <span>Genre : {{ getGenreNamebyID(item.genre_ids) }}</span>
+        </p>
+        <p>
+          <span>{{ item.overview }}</span>
+        </p>
+      </div>
+    </div>
+  </div>

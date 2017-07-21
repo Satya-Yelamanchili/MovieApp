@@ -1,0 +1,50 @@
+<div>
+<ul style="display: flex; width: 100%;">
+  <div style="width:30%">
+    <a href="{{ movieInfo?.homepage }}">
+  <img class="img-thumbnail" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movieInfo?.poster_path}}" />
+  </a>
+  </div>
+  <div style="width:70%">
+    <a href="{{ movieInfo?.homepage }}">
+      <h2>
+        {{ movieInfo?.title}} - {{ movieInfo?.release_date | date:"yyyy" }}
+      </h2>
+      <a href="{{ url }}">Trailer</a>
+    </a>
+
+    <p>Genre: <span *ngFor="let item of  movieInfo?.genres; let islast = last">{{ item.name }} {{ islast ? "" : ", "}} </span></p>
+    <p>Revenue: {{ movieInfo?.revenue | currency:"USD":true}} Globally</p>
+    <p> OverView: {{ movieInfo?.overview }}</p>
+  </div>
+</ul>
+</div>
+<div>
+  <ul *ngFor="let item of cast" class= "img-thumbnail" style="border: 10px">
+    <a href="personinfo/{{item.id}}">
+              <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.profile_path }}">
+              </a>
+            <p><strong>{{item.name}}</strong></p>
+            <p> {{item.character}} </p>  
+  </ul>
+</div>
+
+<div style="height:278px;">
+  <div *ngFor="let item of similarMovies" style="height:278px; display: inline-block; width:30%;"  >
+    <div style="display: flex;" >
+      <div> 
+      <a href="movieinfo/{{item.id}}">
+          <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
+      </a>
+      </div>
+      <div>
+        <a href="movieinfo/{{item.id}}">
+          {{ item.title}}
+        </a>
+        {{ item.popularity }}
+        Genre : {{ getGenreNamebyID(item.genre_ids) }}
+        <span class="text-overflow">{{ item.overview }}</span>  
+      </div>
+    </div>
+  </div>
+</div>

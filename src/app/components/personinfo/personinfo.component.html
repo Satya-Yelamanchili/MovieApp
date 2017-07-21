@@ -1,0 +1,28 @@
+<div>
+<ul style="display: flex; width: 100%;">
+  <div style="width:30%">
+    <a href="{{ personInfo?.homepage }}">
+  <img class="img-thumbnail" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{personInfo?.profile_path}}" />
+  </a>
+  </div>
+  <div style="width:70%">
+    <a href="{{ personInfo?.homepage }}">
+      <h2>
+        {{ personInfo?.name}}
+      </h2>
+    </a>
+    <p> Biography: {{ personInfo?.biography }}</p>
+  </div>
+</ul>
+</div>
+
+
+<div>
+  <ul *ngFor="let item of movieCredit" class= "img-thumbnail" style="border: 10px">
+    <a href="movieinfo/{{item.id}}">
+              <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.backdrop_path }}">
+              </a>
+            <p><strong>{{item.title}} - {{ item.release_date | date:"yyyy" }}</strong></p>
+            <p>{{ item.character }}</p>
+  </ul>
+</div>

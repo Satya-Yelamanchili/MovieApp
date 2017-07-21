@@ -1,0 +1,30 @@
+<p>
+  search works!
+</p>
+
+<input type="text" (keyup)="search()" name="searchText" [(ngModel)]="searchText">
+
+<div class="results">
+  <ul *ngFor="let item of movies" class>
+    <div class="item poster card">
+      <a href="movieinfo/{{item.id}}">
+        <div class="image-content">
+          <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
+        </div>
+      </a>
+      <div class="info">
+        <p>
+          <a href="movieinfo/{{item.id}}">
+        <span class="title result">{{ item.title}}</span>
+      </a>
+          <span> {{ item.vote_average }} </span>
+        </p>
+        <p>
+          <span>Genre : {{ getGenreNamebyID(item.genre_ids) }}</span>
+        </p>
+        <span>{{ item.overview }}</span>
+        <span>{{ item.adult }}</span>
+      </div>
+    </div>
+  </ul>
+</div>
