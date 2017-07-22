@@ -1,0 +1,10 @@
+.videoInline{
+    width:auto; 
+    height:aut0; 
+    display: inline-block;
+    margin-left: 30px;
+}
+.inlineLink{
+    display: inline-block;
+    text-decoration: none; 
+}

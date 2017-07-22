@@ -18,6 +18,7 @@ import { PersoninfoComponent } from './components/personinfo/personinfo.componen
 
 const approutes: Routes = [
     {path:'', component: SearchComponent },
+    {path:'popularmovies', component: MoviespopularComponent},
     {path:'movieinfo/:id', component: MovieinfoComponent },
     {path:'people/:id', component: PeopleComponent },
     {path:'personinfo/:id', component: PersoninfoComponent },

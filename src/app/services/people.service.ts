@@ -6,6 +6,7 @@ import { Constants } from "../constants";
 export class PeopleService {
   personDetailsUrl: string;
   personCredit:string;
+  personExtraUrl:string;
   constructor(private http: Http) {
   }
 
@@ -17,6 +18,11 @@ export class PeopleService {
   getpersonCredits(personId: number) {
     this.personDetailsUrl = Constants.baseApiUrl + Constants.personMovieCredits.replace("{person_id}", personId.toString()) + Constants.apiKey;
     return this.http.get(this.personDetailsUrl).map(res => res.json());
+  }
+
+  getpersonExtraId(personId: number){
+    this.personExtraUrl = Constants.baseApiUrl + Constants.personExtraId.replace("{person_id}",personId.toString())+Constants.apiKey;
+    return this.http.get(this.personExtraUrl).map(res => res.json()||{});
   }
 
 }

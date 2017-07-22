@@ -8,6 +8,7 @@ import { PersonInfo } from "../../models/personinfo";
 import { GenreService } from "../../services/genre.service";
 import { Movie } from "../../models/movie";
 import { Genre } from "../../models/genre";
+import { ExtraIds } from "../../models/personextraid";
 
 @Component({
   selector: 'app-personinfo',
@@ -15,27 +16,29 @@ import { Genre } from "../../models/genre";
   styleUrls: ['./personinfo.component.css']
 })
 export class PersoninfoComponent implements OnInit {
-personId:number;
-personInfo:PersonInfo;
-movieCredit:Movie[];
-allGenres:Genre[];
-movieGenre:string[];
-  constructor(private peopleService:PeopleService, private route:ActivatedRoute, private genreService:GenreService) { }
+  personId: number;
+  personInfo: PersonInfo;
+  movieCredit: Movie[];
+  allGenres: Genre[];
+  movieGenre: string[];
+  extraids:ExtraIds;
+  constructor(private peopleService: PeopleService, private route: ActivatedRoute, private genreService: GenreService) { }
 
   ngOnInit() {
     this.getPersonId();
     this.getGenres()
     this.getPersonDetails().subscribe();
     this.getpersonCredits().subscribe();
+    this.getPersonExtraIds();
   }
 
-    getPersonId() {
+  getPersonId() {
     this.route.params.subscribe((param: Params) => {
       this.personId = param['id'];
     });
   }
 
-    getGenreNamebyID(ids: number[]) {
+  getGenreNamebyID(ids: number[]) {
     this.movieGenre = [];
     ids.forEach((x) => {
       if (this.allGenres.find((res) => res.id === x) !== undefined) {
@@ -51,14 +54,21 @@ movieGenre:string[];
         this.personInfo = personinfo;
       });
   }
-    getpersonCredits(){
-      return this.peopleService.getpersonCredits(this.personId)
+
+  getpersonCredits() {
+    return this.peopleService.getpersonCredits(this.personId)
       .map(personCrew => {
         this.movieCredit = personCrew.cast;
       });
-    }
+  }
 
-    getGenres() {
+  getPersonExtraIds() {
+    this.peopleService.getpersonExtraId(this.personId).subscribe(extra => {
+      this.extraids = extra;
+    });
+  }
+
+  getGenres() {
     this.genreService.getGenre().subscribe(genres => {
       this.allGenres = genres.genres;
     },

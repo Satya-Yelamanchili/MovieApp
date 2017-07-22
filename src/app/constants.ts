@@ -11,6 +11,8 @@ export class Constants {
     public static personSearch = "/search/person?api_key=";
     public static personinfo = "/person/{person_id}?api_key=";
     public static personMovieCredits = "/person/{person_id}/movie_credits?api_key="
+    public static personExtraId="/person/{person_id}/external_ids?api_key="
     public static tvSearch = "/search/tv?api_key=";
     public static genre = "/genre/movie/list?api_key=";
+    public static bgImg="https://image.tmdb.org/t/p/w300_and_h450_bestv2"
 }

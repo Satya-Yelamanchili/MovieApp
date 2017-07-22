@@ -1,28 +1,40 @@
 <div>
-<ul style="display: flex; width: 100%;">
-  <div style="width:30%">
-    <a href="{{ personInfo?.homepage }}">
+  <ul style="display: flex; width: 100%">
+    <div style="width:auto; margin-right: 30px">
+      <a href="{{ personInfo?.homepage }}">
   <img class="img-thumbnail" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{personInfo?.profile_path}}" />
   </a>
-  </div>
-  <div style="width:70%">
-    <a href="{{ personInfo?.homepage }}">
-      <h2>
-        {{ personInfo?.name}}
-      </h2>
-    </a>
-    <p> Biography: {{ personInfo?.biography }}</p>
-  </div>
-</ul>
+    </div>
+    <div style="width:70%">
+      <div>
+        <div class="externalIcon">
+          <a href="{{ personInfo?.homepage }}">
+            <h2>{{ personInfo?.name }}</h2>
+          </a>
+        </div>
+        <span class="externalIcon" *ngIf="extraids?.twitter_id">
+        <a href="https://twitter.com/{{extraids?.twitter_id}}" target="_blank" class="icon icon-twitter" style="text-decoration: none;"></a>
+      </span>
+        <div class="externalIcon" *ngIf="extraids?.instagram_id">
+          <a href="https://instagram.com/{{extraids?.instagram_id}}" target="_blank" class="icon icon-Instagram" style="text-decoration: none;"></a>
+        </div>
+        <div class="externalIcon" *ngIf="extraids?.facebook_id">
+          <a href="https://facebook.com/{{extraids?.facebook_id}}" target="_blank" class="icon icon-Facebook" style="text-decoration: none;"></a>
+        </div>
+        <div class="externalIcon" *ngIf="extraids?.imdb_id">
+          <a href="http://www.imdb.com/name/{{extraids?.imdb_id}}/" target="_blank" class="icon icon-imdb" style="text-decoration: none;"></a>
+        </div>
+      </div>
+      <p> Biography: {{ personInfo?.biography }}</p>
+    </div>
+  </ul>
 </div>
-
-
 <div>
-  <ul *ngFor="let item of movieCredit" class= "img-thumbnail" style="border: 10px">
+  <ul *ngFor="let item of movieCredit" class="img-thumbnail" style="border: 10px">
     <a href="movieinfo/{{item.id}}">
-              <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.backdrop_path }}">
+              <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
               </a>
-            <p><strong>{{item.title}} - {{ item.release_date | date:"yyyy" }}</strong></p>
-            <p>{{ item.character }}</p>
+    <p><strong>{{item.title}} - {{ item.release_date | date:"yyyy" }}</strong></p>
+    <p>{{ item.character }}</p>
   </ul>
 </div>
