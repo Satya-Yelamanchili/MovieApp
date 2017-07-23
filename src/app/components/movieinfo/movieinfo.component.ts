@@ -22,8 +22,6 @@ import { Constants } from "../../constants";
 export class MovieinfoComponent implements OnInit {
   movieid: number;
   movieInfo: MovieInfo;
-  similarMovies: Movie[];
-  allGenres: Genre[];
   movieGenre: string[];
   cast: Crew[];
   crew:Crew[];
@@ -37,11 +35,9 @@ export class MovieinfoComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.getGenres();
+  ngOnInit() {    
     this.getMovieId();
     this.getMovieDetails().subscribe();
-    this.getSimilarMovies().subscribe();
     this.getMovieCrew();
     this.getMovieVideos().subscribe();
   }
@@ -49,16 +45,6 @@ export class MovieinfoComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       this.movieid = param['id'];
     });
-  }
-
-  getGenreNamebyID(ids: number[]) {
-    this.movieGenre = [];
-    ids.forEach((x) => {
-      if (this.allGenres.find((res) => res.id === x) !== undefined) {
-        this.movieGenre.push(this.allGenres.find((res) => res.id === x).name);
-      }
-    });
-    return this.movieGenre;
   }
 
   getMovieDetails() {
@@ -69,12 +55,6 @@ export class MovieinfoComponent implements OnInit {
       });
   }
 
-  getSimilarMovies() {
-    return this.movieService.SimilarMovies(this.movieid)
-      .map(movies => {
-        this.similarMovies = movies.results;
-      });
-  }
     getMovieVideos() {
     return this.movieService.movieVideos(this.movieid)
       .map(videos => {
@@ -95,15 +75,5 @@ export class MovieinfoComponent implements OnInit {
       this.cast = movieCrew.cast.filter((item) => item.order <= 10);
       this.crew = movieCrew.crew;
     })
-  }
-
-  getGenres() {
-    this.genreService.getGenre().subscribe(genres => {
-      this.allGenres = genres.genres;
-    },
-      err => {
-        console.log(err);
-        return false;
-      });
   }
 }

@@ -1,0 +1,17 @@
+<div style="height:278px;">
+  <div *ngFor="let item of similarMovies" style="height:278px; display: inline-block; width:30%;">
+    <div style="display: flex;">
+      <div>
+        <a href="movieinfo/{{item.id}}">
+          <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
+      </a>
+      </div>
+      <div>
+        <a href="movieinfo/{{item.id}}">
+          {{ item.title}}
+        </a> {{ item.popularity }} Genre : {{ getGenreNamebyID(item.genre_ids) }}
+        <span class="text-overflow">{{ item.overview }}</span>
+      </div>
+    </div>
+  </div>
+</div>

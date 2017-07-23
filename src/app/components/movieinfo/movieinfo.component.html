@@ -1,8 +1,8 @@
 <div>
   <ul style="display: flex;">
-    <div style="height:auto">
+    <div>
       <a href="{{ movieInfo?.homepage }}">
-        <img class="img-thumbnail" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movieInfo?.poster_path}}" />
+        <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movieInfo?.poster_path}}" />
       </a>
     </div>
     <div style="margin-left: 30px">
@@ -25,6 +25,7 @@
 <div *ngFor="let item of videos" class="videoInline">
   <iframe [src]='getSafeUrl(item.key)' frameborder="0" allowfullscreen width="400px" height="250px"></iframe>
 </div>
+
 <div>
   <ul *ngFor="let item of cast" class="img-thumbnail" style="border: 10px">
     <a href="personinfo/{{item.id}}">
@@ -35,20 +36,4 @@
   </ul>
 </div>
 
-<div style="height:278px;">
-  <div *ngFor="let item of similarMovies" style="height:278px; display: inline-block; width:30%;">
-    <div style="display: flex;">
-      <div>
-        <a href="movieinfo/{{item.id}}">
-          <img src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{ item.poster_path }}">
-      </a>
-      </div>
-      <div>
-        <a href="movieinfo/{{item.id}}">
-          {{ item.title}}
-        </a> {{ item.popularity }} Genre : {{ getGenreNamebyID(item.genre_ids) }}
-        <span class="text-overflow">{{ item.overview }}</span>
-      </div>
-    </div>
-  </div>
-</div>
+<app-movielist [movieid] = 'movieid'></app-movielist>

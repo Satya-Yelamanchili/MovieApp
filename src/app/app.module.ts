@@ -15,12 +15,16 @@ import { PeopleComponent } from './components/people/people.component';
 import { MovieinfoComponent } from './components/movieinfo/movieinfo.component';
 import { MoviespopularComponent } from './components/moviespopular/moviespopular.component';
 import { PersoninfoComponent } from './components/personinfo/personinfo.component';
+import { MovielistDirective } from './directives/movielist.directive';
+import { MovielistComponent } from './components/movielist/movielist.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 
 const approutes: Routes = [
-    {path:'', component: SearchComponent },
-    {path:'popularmovies', component: MoviespopularComponent},
+    {path:'', component: HomeComponent },
+    {path:'movies', component: MoviespopularComponent},
     {path:'movieinfo/:id', component: MovieinfoComponent },
-    {path:'people/:id', component: PeopleComponent },
+    {path:'people', component: PeopleComponent },
     {path:'personinfo/:id', component: PersoninfoComponent },
 ]
 
@@ -31,7 +35,11 @@ const approutes: Routes = [
     PeopleComponent,
     MovieinfoComponent,
     MoviespopularComponent,
-    PersoninfoComponent
+    PersoninfoComponent,
+    MovielistDirective,
+    MovielistComponent,
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

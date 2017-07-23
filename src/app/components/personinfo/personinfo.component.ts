@@ -35,6 +35,7 @@ export class PersoninfoComponent implements OnInit {
   getPersonId() {
     this.route.params.subscribe((param: Params) => {
       this.personId = param['id'];
+      localStorage.setItem('personID', this.personId.toString());
     });
   }
 
